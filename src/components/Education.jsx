@@ -1,7 +1,7 @@
 import { useState } from "react";
 import ButtonSubmit from "./ButtonSubmit";
 
-function SchoolExperience(props){
+function Education(props){
 
     const [schoolInput, setSchoolInput] = useState({
             school:"",
@@ -10,41 +10,39 @@ function SchoolExperience(props){
             dateTo:""
         })
     
-        const [schoolList, setSchoolList] = useState([])
+    const [schoolList, setSchoolList] = useState([])
     
-        const handleInput =(e) => {
-            const {name, value} = e.target
+    const handleInput =(e) => {
+        const {name, value} = e.target
             
-            setSchoolInput((prevValue) => ({
-                ...prevValue,
-                [name]: value,
-            }))
-        }
+        setSchoolInput((prevValue) => ({
+            ...prevValue,
+            [name]: value,
+        }))
+    }
     
-        const handleAddSchool = () => {
-            if(!allFieldsFilled()) return;
-    
-            const updateList = [...schoolList, schoolInput]
-            setSchoolList(updateList)
-            props.schoolInput(updateList)
-    
-            setSchoolInput({
-                school:"",
-                course:"",
-                dateFrom:"",
-                dateTo:""
-            })
-        }
-    
-        // This will return TRUE only if all the inputs are filled
-        const allFieldsFilled = () => {
-            return schoolInput.school.trim() && schoolInput.course.trim() && schoolInput.dateFrom && schoolInput.dateTo
-        }
-    
-        // Disable if fields are not filled
-        const isButtonDisabled = !allFieldsFilled()
+    const handleAddSchool = () => {
+        if(!allFieldsFilled()) return;
 
-        console.log(isButtonDisabled)
+        const updateList = [...schoolList, schoolInput]
+        setSchoolList(updateList)
+        props.schoolInput(updateList)
+
+        setSchoolInput({
+            school:"",
+            course:"",
+            dateFrom:"",
+            dateTo:""
+        })
+    }
+
+    // This will return TRUE only if all the inputs are filled
+    const allFieldsFilled = () => {
+        return schoolInput.school.trim() && schoolInput.course.trim() && schoolInput.dateFrom && schoolInput.dateTo
+    }
+
+    // Disable if fields are not filled
+    const isButtonDisabled = !allFieldsFilled()
 
     return (
         <div className="container-education">
@@ -64,15 +62,29 @@ function SchoolExperience(props){
                 name="course" 
             />
             <p>Date:</p>
-            <p>From:<input type="date" /></p>
-            <p>To:<input type="date"  className="date-ending"/></p>
+            <p>From:
+            <input 
+                type="date"
+                onChange={handleInput}
+                value={schoolInput.dateFrom} 
+                name="dateFrom"
+            /></p>
+            <p>To:
+            <input 
+                type="date"  
+                onChange={handleInput}
+                value={schoolInput.dateTo}
+                name="dateTo"
+                className="date-ending"
+            /></p>
+            
             <ButtonSubmit 
                 onClick={handleAddSchool}
                 isDisabled={isButtonDisabled}
-                isSubmitted={isButtonDisabled ? "Fill fields" : "Add work"}
+                isSubmitted={isButtonDisabled ? "Fill fields" : "Add course"}
             />
         </div>
     )
 }
 
-export default SchoolExperience;
+export default Education;

@@ -1,6 +1,6 @@
 import Languages from "./Languages";
 import PersonalDetails from "./PersonalDetails";
-import SchoolExperience from "./Education";
+import Education from "./Education";
 import WorkExperience from "./WorkExperience";
 
 function Sidebar(props){
@@ -8,7 +8,7 @@ function Sidebar(props){
         <div className="sidebar-container">
             <PersonalDetails detailsInput={props.detailsInput}/>
             <WorkExperience workInput={props.workValueInput}/>
-            {<SchoolExperience />}
+            <Education schoolInput={props.schoolValueInput}/>    
             <Languages />
         </div>
     )

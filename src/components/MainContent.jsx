@@ -6,8 +6,8 @@ function MainContent(props){
 
         return (arr.map((item, index) => (
             <div key={index} className={`${info}-item`}>
-                    <p><strong>Company:</strong> {item.company}</p>
-                    <p><strong>Role:</strong> {item.role}</p>
+                    <p><strong>{info === "work" ? "Company:" : "School:"}</strong> {item.company ? item.company : item.school}</p>
+                    <p><strong>{info === "work" ? "Role:" : "Course:"}</strong> {item.role ? item.roel : item.course}</p>
                     <p><strong>From:</strong> {item.dateFrom} <strong>To:</strong> {item.dateTo}</p>
             </div>
         )))
@@ -26,23 +26,12 @@ function MainContent(props){
                 </div>
                 <div className="main-workExp">
                     {displayItemsList(props.workValues, "work")}
-                    {/* {Array.isArray(props.workValues) && props.workValues.map((work, index) => (
-                        <div key={index} className="work-item">
-                            <p><strong>Company:</strong> {work.company}</p>
-                            <p><strong>Role:</strong> {work.role}</p>
-                            <p><strong>From:</strong> {work.dateFrom} <strong>To:</strong> {work.dateTo}</p>
-                        </div>
-                    ))} */}
                 </div>
                 <div className="main-schoolEdu">
                     {displayItemsList(props.schoolValues, "school")}
-                    {/* {Array.isArray(props.schoolValues) && props.schoolValues.map((school, index) => (
-                        <div key={index} className="work-item">
-                            <p><strong>Company:</strong> {school.company}</p>
-                            <p><strong>Role:</strong> {school.role}</p>
-                            <p><strong>From:</strong> {school.dateFrom} <strong>To:</strong> {school.dateTo}</p>
-                        </div>
-                    ))} */}
+                </div>
+                <div className="main-languages">
+                    <p>This will be again a List of Languagues and proficency</p>
                 </div>
         </div>
     )
