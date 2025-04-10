@@ -1,7 +1,7 @@
 import { useState } from "react";
 import ButtonSubmit from "./ButtonSubmit";
 
-function Languages(){
+function Languages(props){
 
     const [langInput, setLangInput] = useState({
         language: "",
@@ -21,13 +21,22 @@ function Languages(){
     }
 
     const handleSaveInput = () => {
+        const updateList = [...langList, langInput]
+        setLangList(updateList)
+        props.langInput(updateList)
 
+        setLangInput({
+            language: "",
+            level: ""
+        })
     }
 
+    // This will give true when all the fields are filled
     const allFieldsFilled = () => {
         return langInput.language.trim() && langInput.level
     }
 
+    // This will maintain the button disables when all fields are emtpy.
     const isButtonDisabled = !allFieldsFilled()
 
     return (
@@ -43,15 +52,17 @@ function Languages(){
             />
             <p>Level:</p>
             <select name="level" id="lang-levels" value={langInput.level} onChange={handleInput}>
-                <option value="basic1">Basic 1</option>
-                <option value="basic2">Basic 1</option>
-                <option value="ind1">Independent 1</option>
-                <option value="ind2">Independent 2</option>
-                <option value="proficient1">Proficient 1</option>
-                <option value="proficient2">Proficient 2</option>
+                <option value="" default></option>
+                <option value="A2">Basic 1</option>
+                <option value="A1">Basic 2</option>
+                <option value="B2">Independent 1</option>
+                <option value="B1">Independent 2</option>
+                <option value="C2">Proficient 1</option>
+                <option value="C1">Proficient 2</option>
             </select>
             <ButtonSubmit 
                 onClick={handleSaveInput}
+                /* Disabled is TRUE while eveything empty. */
                 isDisabled={isButtonDisabled}
                 isSubmitted={isButtonDisabled ? "Fill fields" : "Add Language"}
             />

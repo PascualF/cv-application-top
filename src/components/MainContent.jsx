@@ -7,8 +7,18 @@ function MainContent(props){
         return (arr.map((item, index) => (
             <div key={index} className={`${info}-item`}>
                     <p><strong>{info === "work" ? "Company:" : "School:"}</strong> {item.company ? item.company : item.school}</p>
-                    <p><strong>{info === "work" ? "Role:" : "Course:"}</strong> {item.role ? item.roel : item.course}</p>
+                    <p><strong>{info === "work" ? "Role:" : "Course:"}</strong> {item.role ? item.role : item.course}</p>
                     <p><strong>From:</strong> {item.dateFrom} <strong>To:</strong> {item.dateTo}</p>
+            </div>
+        )))
+    }
+
+    const displayLanguages = (arr) => {
+        if(!Array.isArray(arr)) return;
+
+        return (arr.map((item, index) => (
+            <div key={index} className="languages-item">
+                <p>I speak {item.language} with a level of {item.level}</p>
             </div>
         )))
     }
@@ -27,11 +37,13 @@ function MainContent(props){
                 <div className="main-workExp">
                     {displayItemsList(props.workValues, "work")}
                 </div>
+                <hr></hr>
                 <div className="main-schoolEdu">
                     {displayItemsList(props.schoolValues, "school")}
                 </div>
+                <hr></hr>
                 <div className="main-languages">
-                    <p>This will be again a List of Languagues and proficency</p>
+                    {displayLanguages(props.langValues)}
                 </div>
         </div>
     )

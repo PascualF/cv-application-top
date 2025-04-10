@@ -8,6 +8,7 @@ function App() {
   const [detailsValues, setDetailsValues] = useState("")
   const [workValues, setWorkValue] = useState("")
   const [schoolValues, setSchoolValue] = useState("")
+  const [langValues, setLangValues] = useState("")
 
   function valuesInput(data){
     setDetailsValues(data)
@@ -21,11 +22,15 @@ function App() {
     setSchoolValue(data)
   }
 
+  function langInput(data) {
+    setLangValues(data)
+  }
+
 
   return (
     <div className='app-container'>
-      <Sidebar  detailsInput={valuesInput} workValueInput={workInput} schoolValueInput={schoolInput}/>
-      <MainContent detailsValues={detailsValues} workValues={workValues} schoolValues={schoolValues}/>
+      <Sidebar  detailsInput={valuesInput} workValueInput={workInput} schoolValueInput={schoolInput} langValueInput={langInput}/>
+      <MainContent detailsValues={detailsValues} workValues={workValues} schoolValues={schoolValues} langValues={langValues}/>
     </div>
   )
 }

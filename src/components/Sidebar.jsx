@@ -9,7 +9,7 @@ function Sidebar(props){
             <PersonalDetails detailsInput={props.detailsInput}/>
             <WorkExperience workInput={props.workValueInput}/>
             <Education schoolInput={props.schoolValueInput}/>    
-            <Languages />
+            <Languages langInput={props.langValueInput}/>
         </div>
     )
 }
