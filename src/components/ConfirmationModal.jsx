@@ -11,7 +11,6 @@ function ConfirmationModal({message = "Sure?", onConfirm, onCancel}){
             </div>
         </div>
     )
-
 }
 
 export default ConfirmationModal;

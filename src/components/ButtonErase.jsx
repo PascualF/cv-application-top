@@ -5,7 +5,7 @@ function ButtonErase(props){
     return (
         <div>
             <button
-                onClick={props.onDelete}>
+                onClick={() => props.onDelete(props.index, props.type)}>
                 <img src={trashIcon} alt="icon-trash"/>
             </button>
         </div>

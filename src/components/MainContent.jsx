@@ -5,21 +5,23 @@ import ConfirmationModal from "./ConfirmationModal";
 
 function MainContent(props){
 
+    // To hide and show the modal, and to update the list to 
     const [showModal, setShowModal] = useState(false);
     const [deleteTarget, setDeleteTarget] = useState({
-        type: "",
-        index: null
+        index:null,
+        type:""
     })
-
 
     // This will handle delete, and will activate.
     const handleDelete = (index, type) => {
-        setDeleteTarget({index, type})
-        setShowModal(true)
+        setDeleteTarget({
+            index, 
+            type
+        })
+        setShowModal(true)    
     }
 
-
-
+    console.log(deleteTarget)
 
     const displayItemsList = (arr, info) => {
         if(!Array.isArray(arr)) return;
@@ -27,6 +29,7 @@ function MainContent(props){
         return (arr.map((item, index) => (
             <div className="container-content-work-school">
                 <div key={index} className={`${info}-item`}>
+                    {console.log(info)}
                     <p><strong>{info === "work" ? "Company:" : "School:"}</strong> {item.company ? item.company : item.school}</p>
                     <p><strong>{info === "work" ? "Role:" : "Course:"}</strong> {item.role ? item.role : item.course}</p>
                     <p><strong>From:</strong> {item.dateFrom} <strong>To:</strong> {item.dateTo}</p>
@@ -46,7 +49,7 @@ function MainContent(props){
                     />
                 </div>
                 {showModal && (
-                    <ConfirmationModal 
+                    <ConfirmationModal  
                         message="Are you sure want to delete this item?"
                         onConfirm={() => {
                             props.onDeleteItem(deleteTarget.index, deleteTarget.type)
@@ -59,17 +62,25 @@ function MainContent(props){
         )))
     }
 
-    const displayLanguages = (arr) => {
+    const displayLanguages = (arr, info) => {
         if(!Array.isArray(arr)) return;
 
         return (arr.map((item, index) => (
             <div key={index} className="languages-item">
                 <p>I speak {item.language} with a level of {item.level}</p>
+                <div className="container-button">
+                    <ButtonEdit />
+                    <ButtonErase 
+                        index={index}
+                        type={info}
+                        onDelete={handleDelete}
+                    />
+                </div>
                 {showModal && (
-                    <ConfirmationModal 
+                    <ConfirmationModal  
                         message="Are you sure want to delete this item?"
                         onConfirm={() => {
-                            
+                            props.onDeleteItem(deleteTarget.index, deleteTarget.type)
                             setShowModal(false)
                         }}
                         onCancel={() => setShowModal(false)}
@@ -88,6 +99,7 @@ function MainContent(props){
                     <div className="details-header">
                         {props.detailsValues.email && <p>em@il: {props.detailsValues.email}</p>}
                         {props.detailsValues.phoneNumber && <p>Phone Number: {props.detailsValues.phoneNumber}</p>}
+                        {props.detailsValues && <ButtonEdit />}
                     </div>
                 </div>
                 <div className="main-workExp">
@@ -99,7 +111,7 @@ function MainContent(props){
                 </div>
                 {props.schoolValues.length !== 0 && <hr></hr>}
                 <div className="main-languages">
-                    {displayLanguages(props.langValues)}
+                    {displayLanguages(props.langValues, "lang")}
                 </div>
         </div>
     )
