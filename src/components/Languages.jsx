@@ -53,12 +53,12 @@ function Languages(props){
             <p>Level:</p>
             <select name="level" id="lang-levels" value={langInput.level} onChange={handleInput}>
                 <option value="" default></option>
-                <option value="A2">Basic 1</option>
-                <option value="A1">Basic 2</option>
-                <option value="B2">Independent 1</option>
-                <option value="B1">Independent 2</option>
-                <option value="C2">Proficient 1</option>
-                <option value="C1">Proficient 2</option>
+                <option value="A1">A1</option>
+                <option value="A2">A2</option>
+                <option value="B1">B1</option>
+                <option value="B2">B2</option>
+                <option value="C1">C1</option>
+                <option value="C2">C2</option>
             </select>
             <ButtonSubmit 
                 onClick={handleSaveInput}

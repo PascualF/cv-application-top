@@ -80,6 +80,7 @@ body{
   background-color: white;
   margin-bottom: 10px;
   padding-bottom: 10px;
+  padding-top: 5px;
 }
 
 .container-work-exp p,
@@ -118,4 +119,70 @@ h4{
 .details-header{
   display: flex;
   justify-content: space-around;
+}
+
+.container-content-work-school{
+  display: flex;
+  margin-left: 10px;
+}
+
+.container-content-work-school button{
+  height: 40px;
+  width: 20px;
+  border-radius: 50%;
+  background-color: white;
+  border: 1px solid black;
+  cursor: pointer;
+}
+
+.work-item{
+  display: flex;
+  flex-direction: column;
+}
+
+.work-item p{
+  margin: 0;
+  margin-top: 3px;
+}
+
+.school-item p{
+  margin: 0;
+}
+
+.container-button{
+  margin-top: 20px;
+  margin-left: 60px; 
+}
+
+button img{
+  height: 15px;
+}
+
+.text-area-content{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: 15px;
+}
+
+.modal-confirmation{
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.modal-btns button{
+  width: 150px;
+  border-radius: 5px;
+  margin-left: 5px;
+  margin-right: 5px;
+  margin-bottom: 10px;
+  color:black;
+}
+
+.modal-box{
+  background-color: gray;
+  border-radius: 5px;
+  padding: 10px;
 }
