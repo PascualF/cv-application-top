@@ -8,9 +8,17 @@ function MainContent(props){
     // To hide and show the modal, and to update the list to 
     const [showModal, setShowModal] = useState(false);
     const [deleteTarget, setDeleteTarget] = useState({
-        index:null,
-        type:""
+        index: null,
+        type: ""
     })
+
+    // Pressing the Edit button will trigger this useState
+    const [editTarget, setEditTarget] = useState({
+        index: null,
+        type: ""
+    })
+
+    console.log(editTarget)
 
     // This will handle delete, and will activate.
     const handleDelete = (index, type) => {
@@ -21,15 +29,20 @@ function MainContent(props){
         setShowModal(true)    
     }
 
-    console.log(deleteTarget)
+    const handleEdit = (index, type) => {
+        setEditTarget({
+            index,
+            type
+        })
+        props.onEditItem(index, type)
+    }
 
     const displayItemsList = (arr, info) => {
         if(!Array.isArray(arr)) return;
 
         return (arr.map((item, index) => (
-            <div className="container-content-work-school">
-                <div key={index} className={`${info}-item`}>
-                    {console.log(info)}
+            <div key={index} className="container-content-work-school">
+                <div className={`${info}-item`}>
                     <p><strong>{info === "work" ? "Company:" : "School:"}</strong> {item.company ? item.company : item.school}</p>
                     <p><strong>{info === "work" ? "Role:" : "Course:"}</strong> {item.role ? item.role : item.course}</p>
                     <p><strong>From:</strong> {item.dateFrom} <strong>To:</strong> {item.dateTo}</p>
@@ -41,7 +54,11 @@ function MainContent(props){
                 }
                 
                 <div className="container-button">
-                    <ButtonEdit />
+                    <ButtonEdit 
+                        index={index}
+                        type={info}
+                        onEdit={handleEdit}
+                    />
                     <ButtonErase 
                         index={index}
                         type={info}
@@ -69,7 +86,11 @@ function MainContent(props){
             <div key={index} className="languages-item">
                 <p>I speak {item.language} with a level of {item.level}</p>
                 <div className="container-button">
-                    <ButtonEdit />
+                    <ButtonEdit 
+                        index={index}
+                        type={info}
+                        onEdit={handleEdit}
+                    />
                     <ButtonErase 
                         index={index}
                         type={info}
@@ -99,7 +120,8 @@ function MainContent(props){
                     <div className="details-header">
                         {props.detailsValues.email && <p>em@il: {props.detailsValues.email}</p>}
                         {props.detailsValues.phoneNumber && <p>Phone Number: {props.detailsValues.phoneNumber}</p>}
-                        {props.detailsValues && <ButtonEdit />}
+                        {props.detailsValues && 
+                            <ButtonEdit />}
                     </div>
                 </div>
                 <div className="main-workExp">

@@ -1,3 +1,4 @@
+// Just discovered you can pass props or the variables directly.
 function ConfirmationModal({message = "Sure?", onConfirm, onCancel}){
 
     return (

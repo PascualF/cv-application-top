@@ -11,9 +11,11 @@ function Sidebar(props){
             />
             <WorkExperience 
                 workInput={props.workValueInput}
+                workToEdit={props.itemToEdit}
             />
             <Education 
                 schoolInput={props.schoolValueInput}
+                schoolToEdit={props.itemToEdit}
             />    
             <Languages 
                 langInput={props.langValueInput}

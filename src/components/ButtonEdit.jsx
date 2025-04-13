@@ -1,9 +1,11 @@
 import editIcon from "../assets/edit-icon.svg";
 
-function ButtonEdit(){
+function ButtonEdit(props){
     return (
         <div>
-            <button><img src={editIcon} alt="icon-edit"/></button>
+            <button
+                onClick={() => props.onEdit(props.index, props.type)}
+            ><img src={editIcon} alt="icon-edit"/></button>
         </div>
     )
 }

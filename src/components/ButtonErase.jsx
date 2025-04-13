@@ -1,7 +1,6 @@
 import trashIcon from "../assets/trash-icon.svg";
 
 function ButtonErase(props){
-
     return (
         <div>
             <button
