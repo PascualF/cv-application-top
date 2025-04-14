@@ -9,9 +9,7 @@ function Education(props){
             dateFrom:"",
             dateTo:""
         })
-    
-    const [schoolList, setSchoolList] = useState([])
-    
+
     const handleInput =(e) => {
         const {name, value} = e.target
             
@@ -21,12 +19,33 @@ function Education(props){
         }))
     }
     
+    const [loadingEdit, setLoadingEdit] = useState(false)
+
+    if (props.schoolToEdit && !loadingEdit){
+        const {data} = props.schoolToEdit
+        setSchoolInput({
+            school: data.school||"",
+            course: data.course||"",
+            dateFrom: data.dateFrom||"",
+            dateTo: data.dateTo||""
+        })
+        setLoadingEdit(true)
+    }
+
     const handleAddSchool = () => {
         if(!allFieldsFilled()) return;
 
-        const updateList = [...schoolList, schoolInput]
-        setSchoolList(updateList)
-        props.schoolInput(updateList)
+        const schoolList = props.newSchoolValues || []
+
+        if(props.schoolToEdit){
+            const updateList = [...schoolList];
+            const index = props.schoolToEdit.index
+            updateList[index] = schoolInput
+            props.schoolInput(updateList)
+        } else {
+            const updateList = [...schoolList, schoolInput]
+            props.schoolInput(updateList)
+        }
 
         setSchoolInput({
             school:"",
@@ -34,6 +53,8 @@ function Education(props){
             dateFrom:"",
             dateTo:""
         })
+        setLoadingEdit(false)
+        props.clearFields()
     }
 
     // This will return TRUE only if all the inputs are filled

@@ -10,21 +10,31 @@ function Sidebar(props){
                 detailsInput={props.detailsInput}
                 detailsToEdit={props.itemToEdit}
                 clearFields={props.clearFields}
-                clearItemToDelete={props.clearItemToDelete}
             />
             <WorkExperience 
                 workInput={props.workValueInput}
                 workToEdit={props.itemToEdit}
+                clearFields={props.clearFields}
 
-                itemToDelete={props.itemToDelete}
-                clearItemToDelete={props.clearItemToDelete}
+                // When updating the list in the App.
+                newWorkValues={props.workValues}
+
             />
             <Education 
                 schoolInput={props.schoolValueInput}
                 schoolToEdit={props.itemToEdit}
+                clearFields={props.clearFields}
+
+                // When updating the delete
+                newSchoolValues={props.schoolValues}
             />    
             <Languages 
                 langInput={props.langValueInput}
+                langToEdit={props.itemToEdit}
+                clearFields={props.clearFields}
+
+                // When updating the delete
+                newLangValues={props.langValues}
             />
         </div>
     )

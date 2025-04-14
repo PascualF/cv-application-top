@@ -7,8 +7,8 @@ import MainContent from './components/MainContent'
 function App() {
 
   const [detailsValues, setDetailsValues] = useState({})
-  const [workValues, setWorkValue] = useState([])
-  const [schoolValues, setSchoolValue] = useState([])
+  const [workValues, setWorkValues] = useState([])
+  const [schoolValues, setSchoolValues] = useState([])
   const [langValues, setLangValues] = useState([])
 
   const [itemBeingEdited, setItemBeingEdited] = useState("");
@@ -18,11 +18,11 @@ function App() {
     if(type === "work") {
       const updated = [...workValues];
       updated.splice(index, 1);
-      setWorkValue(updated)
+      setWorkValues(updated)
     } else if(type === "school") {
       const updated = [...schoolValues];
       updated.splice(index, 1);
-      setSchoolValue(updated)
+      setSchoolValues(updated)
     } else if (type === "lang") {
       const updated = [...langValues];
       updated.splice(index, 1);
@@ -65,11 +65,11 @@ function App() {
   }
 
   function workInput(data){
-    setWorkValue(data)
+    setWorkValues(data)
   }
 
   function schoolInput(data){
-    setSchoolValue(data)
+    setSchoolValues(data)
   }
 
   function langInput(data) {
@@ -94,9 +94,11 @@ function App() {
         itemToEdit={itemBeingEdited}
         clearFields={clearFields}
 
-        /* workValues={workValues}
+        // Send the updates list to the sidebar
+        
+        workValues={workValues}
         schoolValues={schoolValues}
-        langValues={langValues} */
+        langValues={langValues}
         /* detailsValues={detailsValues} */
       />
 

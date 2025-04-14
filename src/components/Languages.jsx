@@ -8,8 +8,7 @@ function Languages(props){
         level: ""
     })
 
-
-    const [langList, setLangList] = useState([])
+    const [ loadingEdit, setLoadingEdit ] = useState(false)
 
     const handleInput = (e) => {
         const {name, value} = e.target
@@ -20,15 +19,34 @@ function Languages(props){
         }))
     }
 
-    const handleSaveInput = () => {
-        const updateList = [...langList, langInput]
-        setLangList(updateList)
-        props.langInput(updateList)
+    if(props.langToEdit && !loadingEdit){
+        const {data} = props.langToEdit
+        setLangInput({
+            language: data.language || "",
+            level: data.level || ""
+        })
+        setLoadingEdit(true)
+    }
 
+    const handleSaveInput = () => {
+        if(!allFieldsFilled) return 
+
+        const langList = props.newLangValues || []
+        if(props.langToEdit) {
+            const updateList = [...langList]
+            const index = props.langToEdit.index
+            updateList[index] = langInput
+            props.langInput(updateList)
+        } else {
+            const updateList = [...langList, langInput]
+            props.langInput(updateList)
+        }
         setLangInput({
             language: "",
             level: ""
         })
+        setLoadingEdit(false)
+        props.clearFields()
     }
 
     // This will give true when all the fields are filled

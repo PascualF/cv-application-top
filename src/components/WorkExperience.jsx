@@ -12,7 +12,7 @@ function WorkExperience(props){
             dateTo:""
         })
 
-    const [workList, setWorkList] = useState([])
+    /* const [workList, setWorkList] = useState([]) */
 
     const [loadingEdit, setLoadingEdit] = useState(false)
 
@@ -34,28 +34,23 @@ function WorkExperience(props){
             dateFrom: data.dateFrom || "",
             dateTo: data.dateTo || ""
         })
-
         setLoadingEdit(true)
-    }
-
-
-    if(props.itemToDelete.index !== "" && props.itemToDelete.type === "work"){
-        return 'This will get the new LIST - WORK ON THIS NOW'
     }
 
     // On click button. Adding work experience to the list, and sending list to the APP then MainContent.
     const handleAddWork = () => {
         if(!allFieldsFilled()) return;
-
+        // The list will stay updated always in the App, App is the cente of the data
+        const workList = props.newWorkValues || []
         if(props.workToEdit){
             const updateList = [...workList]
             const indexItem = props.workToEdit.index
             updateList[indexItem] = workInput
-            setWorkList(updateList)
+            /* setWorkList(updateList) */
             props.workInput(updateList)
         } else {
             const updateList = [...workList, workInput]
-            setWorkList(updateList)
+            /* setWorkList(updateList) */
             props.workInput(updateList)
         }
 
@@ -68,6 +63,7 @@ function WorkExperience(props){
             dateTo:""
         })
         setLoadingEdit(false)
+        props.clearFields()
     }
 
     // This will return TRUE only if all the inputs are filled
