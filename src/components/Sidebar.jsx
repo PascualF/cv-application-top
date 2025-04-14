@@ -8,10 +8,16 @@ function Sidebar(props){
         <div className="sidebar-container">
             <PersonalDetails 
                 detailsInput={props.detailsInput}
+                detailsToEdit={props.itemToEdit}
+                clearFields={props.clearFields}
+                clearItemToDelete={props.clearItemToDelete}
             />
             <WorkExperience 
                 workInput={props.workValueInput}
                 workToEdit={props.itemToEdit}
+
+                itemToDelete={props.itemToDelete}
+                clearItemToDelete={props.clearItemToDelete}
             />
             <Education 
                 schoolInput={props.schoolValueInput}

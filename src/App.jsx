@@ -14,7 +14,6 @@ function App() {
   const [itemBeingEdited, setItemBeingEdited] = useState("");
 
 
-
   const handleDeleteItem = (index, type) => {
     if(type === "work") {
       const updated = [...workValues];
@@ -28,7 +27,7 @@ function App() {
       const updated = [...langValues];
       updated.splice(index, 1);
       setLangValues(updated)
-    } 
+    }
   }
 
   const handleEditItem = ( index, type) => {
@@ -53,10 +52,15 @@ function App() {
         index,
         type
       })
+    } else if (type === "details"){
+      const itemToEdit = detailsValues
+      setItemBeingEdited({
+        data: itemToEdit
+      })
     }
   }
 
-  function valuesInput(data){
+  function detailsInput(data){
     setDetailsValues(data)
   }
 
@@ -72,11 +76,15 @@ function App() {
     setLangValues(data)
   }
 
+  const clearFields = () => {
+    setItemBeingEdited("")
+  }
+
   return (
     <div className='app-container'>
       <Sidebar  
         // Get the data from the Sidebar
-        detailsInput={valuesInput} 
+        detailsInput={detailsInput} 
         workValueInput={workInput} 
         schoolValueInput={schoolInput} 
         langValueInput={langInput}
@@ -84,11 +92,12 @@ function App() {
         // This will send the updated data to the right components. 
         // Work to be edited
         itemToEdit={itemBeingEdited}
+        clearFields={clearFields}
 
-
+        /* workValues={workValues}
         schoolValues={schoolValues}
-        langValues={langValues}
-        detailsValues={detailsValues}
+        langValues={langValues} */
+        /* detailsValues={detailsValues} */
       />
 
       <MainContent 

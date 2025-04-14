@@ -10,6 +10,8 @@ function PersonalDetails(props){
 
     const [isSubmitted, setIsSubmitted] = useState(false)
     
+    const [itemBeingEdited, setItemBeingEdited] = useState(false)
+
     const handleInputValue = (e) => {
         const { name, value } = e.target;
 
@@ -19,16 +21,39 @@ function PersonalDetails(props){
         }))
     }
 
-    //Butoon handling
+    //Butoon handling, when clicking
     const handleSave = () => {
 
-        props.detailsInput(inputValue)
-        setIsSubmitted(true)
+        if(props.detailsToEdit){
+            props.detailsInput(inputValue)
+            setIsSubmitted(true)
+        } else {
+            props.detailsInput(inputValue)
+            setIsSubmitted(true)
+        }
+
+        setItemBeingEdited(false)
         setInputValue({
             fullName: "",
             phoneNumber: "",
             email: ""
         })
+        props.clearFields()
+        
+    }
+
+    if(props.detailsToEdit && !itemBeingEdited){
+        
+        const { data } = props.detailsToEdit
+        setInputValue({
+            fullName: data.fullName || "",
+            phoneNumber: data.phoneNumber || "",
+            email: data.email || ""
+        })
+
+        setItemBeingEdited(true)
+        setIsSubmitted(false)
+        
     }
 
     const allFieldsFilled = () => {

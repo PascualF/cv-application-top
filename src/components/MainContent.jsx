@@ -13,12 +13,13 @@ function MainContent(props){
     })
 
     // Pressing the Edit button will trigger this useState
-    const [editTarget, setEditTarget] = useState({
+    // No need for those
+/*     const [editTarget, setEditTarget] = useState({
         index: null,
         type: ""
-    })
+    }) */
 
-    console.log(editTarget)
+    //console.log(editTarget)
 
     // This will handle delete, and will activate.
     const handleDelete = (index, type) => {
@@ -30,10 +31,6 @@ function MainContent(props){
     }
 
     const handleEdit = (index, type) => {
-        setEditTarget({
-            index,
-            type
-        })
         props.onEditItem(index, type)
     }
 
@@ -67,7 +64,7 @@ function MainContent(props){
                 </div>
                 {showModal && (
                     <ConfirmationModal  
-                        message="Are you sure want to delete this item?"
+                        message="Are you sure you want to delete this item?"
                         onConfirm={() => {
                             props.onDeleteItem(deleteTarget.index, deleteTarget.type)
                             setShowModal(false)
@@ -99,7 +96,7 @@ function MainContent(props){
                 </div>
                 {showModal && (
                     <ConfirmationModal  
-                        message="Are you sure want to delete this item?"
+                        message="Are you sure you want to delete this item?"
                         onConfirm={() => {
                             props.onDeleteItem(deleteTarget.index, deleteTarget.type)
                             setShowModal(false)
@@ -120,8 +117,13 @@ function MainContent(props){
                     <div className="details-header">
                         {props.detailsValues.email && <p>em@il: {props.detailsValues.email}</p>}
                         {props.detailsValues.phoneNumber && <p>Phone Number: {props.detailsValues.phoneNumber}</p>}
-                        {props.detailsValues && 
-                            <ButtonEdit />}
+                        {props.detailsValues.fullName && 
+                            <ButtonEdit
+                                index={0}
+                                type={"details"}
+                                onEdit={handleEdit} 
+                            />
+                        }
                     </div>
                 </div>
                 <div className="main-workExp">

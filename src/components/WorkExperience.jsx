@@ -24,7 +24,6 @@ function WorkExperience(props){
             [name]: value,
         }))
     }
-
     // I need to stop the re-rendering each time
     if(props.workToEdit && !loadingEdit){
         const { data } = props.workToEdit;
@@ -37,7 +36,11 @@ function WorkExperience(props){
         })
 
         setLoadingEdit(true)
+    }
 
+
+    if(props.itemToDelete.index !== "" && props.itemToDelete.type === "work"){
+        return 'This will get the new LIST - WORK ON THIS NOW'
     }
 
     // On click button. Adding work experience to the list, and sending list to the APP then MainContent.
@@ -64,6 +67,7 @@ function WorkExperience(props){
             dateFrom:"",
             dateTo:""
         })
+        setLoadingEdit(false)
     }
 
     // This will return TRUE only if all the inputs are filled
