@@ -10,6 +10,20 @@ function Languages(props){
 
     const [ loadingEdit, setLoadingEdit ] = useState(false)
 
+    if (
+        props.langToEdit &&
+        props.langToEdit.type === "lang" &&
+        !loadingEdit &&
+        (langInput.language !== props.langToEdit.data.language || langInput.level !== props.langToEdit.data.level)
+    ) {
+        const { data } = props.langToEdit;
+        setLangInput({
+            language: data.language || "",
+            level: data.level || ""
+        });
+        setLoadingEdit(true); // so we don’t run this again
+    }
+
     const handleInput = (e) => {
         const {name, value} = e.target
         
@@ -19,19 +33,13 @@ function Languages(props){
         }))
     }
 
-    if(props.langToEdit && !loadingEdit){
-        const {data} = props.langToEdit
-        setLangInput({
-            language: data.language || "",
-            level: data.level || ""
-        })
-        setLoadingEdit(true)
-    }
+    
 
     const handleSaveInput = () => {
         if(!allFieldsFilled) return 
 
         const langList = props.newLangValues || []
+
         if(props.langToEdit) {
             const updateList = [...langList]
             const index = props.langToEdit.index
@@ -41,6 +49,7 @@ function Languages(props){
             const updateList = [...langList, langInput]
             props.langInput(updateList)
         }
+
         setLangInput({
             language: "",
             level: ""
@@ -69,7 +78,12 @@ function Languages(props){
 
             />
             <p>Level:</p>
-            <select name="level" id="lang-levels" value={langInput.level} onChange={handleInput}>
+            <select 
+                name="level"   
+                id="lang-levels" 
+                value={langInput.level} 
+                onChange={handleInput}
+            >
                 <option value="" default></option>
                 <option value="A1">A1</option>
                 <option value="A2">A2</option>

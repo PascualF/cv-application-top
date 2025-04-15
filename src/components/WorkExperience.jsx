@@ -25,7 +25,7 @@ function WorkExperience(props){
         }))
     }
     // I need to stop the re-rendering each time
-    if(props.workToEdit && !loadingEdit){
+    if(props.workToEdit && !loadingEdit && props.workToEdit.type === "work"){
         const { data } = props.workToEdit;
         setWorkInput({        
             company: data.company || "",

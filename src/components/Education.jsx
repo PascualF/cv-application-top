@@ -21,7 +21,7 @@ function Education(props){
     
     const [loadingEdit, setLoadingEdit] = useState(false)
 
-    if (props.schoolToEdit && !loadingEdit){
+    if (props.schoolToEdit && !loadingEdit && props.schoolToEdit.type === "school"){
         const {data} = props.schoolToEdit
         setSchoolInput({
             school: data.school||"",
