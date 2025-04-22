@@ -15,4 +15,4 @@ If you are developing a production application, we recommend using TypeScript an
 
 This was made for the 'The Odin Project' curriculum, to understand React and get Used to it.
 
-The Live Demo => [https://application-cv-top.netlify.app/]
+[Live_Demo](https://application-cv-top.netlify.app/)
